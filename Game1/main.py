@@ -1,18 +1,32 @@
 #!/usr/bin/env python3
 
+#importando repositórios
 import requests
 import random
 import time
 from os import system
 
+#Setando o site para fazer a busca de palavras
 url = "https://www.mit.edu/~ecprice/wordlist.10000"
+
+#buscando as informações no site informado
 resposta = requests.get(url)
+
+#formando lista com as palavras
 palavras = resposta.content.splitlines()
+
+#convertendo as palavras para utf-8
 palavras = [palavra.decode("utf-8") for palavra in palavras]
-random_palavras = random.sample(palavras, 10)
+
+print('Informe a quantidade de palavras que você deseja:')
+qtd_palavras = int(input())
+
+#gerar palavras aleatórias para o jogador
+random_palavras = random.sample(palavras, qtd_palavras)
 
 
 print('Digite as palavras a seguir o mais rápido possivel:\n')
+
 pontos = 0
 
 tic = time.perf_counter()
